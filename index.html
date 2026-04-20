@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASAS - AKT</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+            overflow: hidden; 
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column; 
+            height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            color: white;
+        }
+
+        /* --- ROW A - 20% --- */
+        .row-a {
+            height: 20%;
+            background-color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 3px solid #34495e;
+        }
+        .row-a h1 { font-size: 1.8rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        .row-a p { font-size: 1.2rem; opacity: 0.9; }
+
+        /* --- ROW B - 60% --- */
+        .row-b {
+            height: 60%;
+            display: flex;
+        }
+
+        .b-left-image {
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .b-left-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .b-right-content {
+            width: 50%;
+            height: 100%;
+            background-color: #0a0a0a; /* Hitam pekat agar glow jam menonjol */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* --- JAM DIGITAL SUPER KEREN --- */
+        #clock {
+            font-size: 10rem; /* Ukuran diperbesar */
+            font-weight: bold;
+            font-family: 'Consolas', 'Monaco', monospace; /* Font monospace yang tegas */
+            color: #00f2ff; /* Warna Cyan Neon */
+            text-shadow: 0 0 10px #00f2ff, 0 0 30px #00f2ff, 0 0 60px #0066ff;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        #date {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 15px;
+        }
+
+        /* --- ROW C - 20% --- */
+        .row-c {
+            height: 20%;
+            background-color: #34495e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-top: 3px solid #2c3e50;
+        }
+        .row-c h2 { font-size: 1.5rem; margin-bottom: 5px; letter-spacing: 2px; }
+        .row-c p { font-size: 1rem; opacity: 0.8; }
+
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <div class="row-a">
+            <h1>Asesmen Sumatif Akhir Semester (ASAS)</h1>
+            <p>Senin, 25 Mei 2026</p>
+            <p>SESI 1 = BAHASA INDONESIA (Pukul 07.00 - 09.00 WIB)</p>
+			<p>SESI 2 = MATEMATIKA (Pukul 10.00 - 12.00 WIB)</p>
+        </div>
+
+        <div class="row-b">
+            <div class="b-left-image">
+                <img src="sekolah.jpg" alt="Foto Sekolah">
+            </div>
+
+            <div class="b-right-content">
+                <div id="clock">00:00:00</div>
+                <div id="date">MEMUAT...</div>
+            </div>
+        </div>
+
+        <div class="row-c">
+            <h2>SMAK PENABUR KOTA TANGERANG</h2>
+            <p>Jalan Honoris Raya Blok J/10 Kota Modern</p>
+            <p>KOTA TANGERANG</p>
+        </div>
+    </div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+
+            // Jam
+            let h = now.getHours().toString().padStart(2, '0');
+            let m = now.getMinutes().toString().padStart(2, '0');
+            let s = now.getSeconds().toString().padStart(2, '0');
+            document.getElementById("clock").innerText = `${h}:${m}:${s}`;
+
+            // Tanggal Indonesia
+            const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            
+            const dayName = days[now.getDay()];
+            const dayDate = now.getDate();
+            const monthName = months[now.getMonth()];
+            const year = now.getFullYear();
+
+            document.getElementById("date").innerText = `${dayName}, ${dayDate} ${monthName} ${year}`;
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+    </script>
+
+</body>
+</html>
